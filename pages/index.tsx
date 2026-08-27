@@ -52,7 +52,8 @@ export default function Home() {
             <a className="text-link" href="#services">Посмотреть, что я делаю <span>↓</span></a>
           </div>
 
-          <div className="hero-playground" onMouseMove={movePlayground} aria-label="Интерактивное поле Brand OS">
+          <div className="hero-playground" onMouseMove={movePlayground} aria-label="Интерактивное поле Brand OS с абстрактной графикой">
+            <img className="playground-image" src="/playground-brand-os.png" alt="Абстрактная графика Brand OS в терракотовых и кислотных цветах" />
             <div className="playground-label">Playground <span>move to explore</span></div>
             <div className="outline-name">KALINSKY</div>
             <div className="orbit orbit-one" style={{ transform: `translate(${position.x}px, ${position.y}px) rotate(-7deg)` }}>

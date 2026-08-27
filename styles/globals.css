@@ -42,19 +42,54 @@ em { color: var(--color-terracotta); font-style: normal; }
 .hero-intro { max-width: 360px; color: #bbb8ad; font-size: 17px; line-height: 1.35; }
 .text-link { display: inline-flex; gap: 20px; margin-top: 30px; color: var(--color-cream); font: 12px var(--font-mono); text-decoration: none; text-transform: uppercase; border-bottom: 1px solid var(--line); padding-bottom: 9px; }
 .text-link span { color: var(--color-acid); }
-.hero-playground { position: relative; min-height: 600px; border: 1px solid var(--line); background: radial-gradient(circle at 50% 48%, #24231f 0, #101010 55%); cursor: crosshair; }
-.playground-label { position: absolute; top: 18px; left: 18px; right: 18px; display: flex; justify-content: space-between; color: var(--color-muted); font: 10px var(--font-mono); text-transform: uppercase; }
+
+/* Playground: FAL-generated atmosphere behind the interactive UI */
+.hero-playground {
+  position: relative;
+  min-height: 600px;
+  border: 1px solid var(--line);
+  background: #101010;
+  cursor: crosshair;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero-playground::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10,10,10,.12), rgba(10,10,10,.58));
+  pointer-events: none;
+  z-index: 1;
+}
+.playground-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .74;
+  mix-blend-mode: screen;
+  filter: saturate(.88) contrast(1.08);
+  transition: transform 700ms cubic-bezier(.2,.8,.2,1), opacity var(--transition-normal);
+}
+.hero-playground:hover .playground-image { opacity: .9; transform: scale(1.04); }
+.playground-label { position: absolute; z-index: 2; top: 18px; left: 18px; right: 18px; display: flex; justify-content: space-between; color: var(--color-muted); font: 10px var(--font-mono); text-transform: uppercase; }
 .playground-label span { color: var(--color-acid); }
-.outline-name { position: absolute; top: 45%; left: 50%; color: transparent; -webkit-text-stroke: 1px rgba(241,238,229,.22); transform: translate(-50%,-50%) rotate(-90deg); font: 700 clamp(80px, 13vw, 190px)/1 var(--font-display); letter-spacing: -.12em; white-space: nowrap; }
-.orbit { position: absolute; display: flex; flex-direction: column; justify-content: space-between; padding: 18px; width: 190px; height: 240px; background: var(--color-acid); color: #111; transition: transform var(--transition-normal); box-shadow: 14px 16px 0 rgba(0,0,0,.28); }
+.outline-name { position: absolute; z-index: 2; top: 45%; left: 50%; color: transparent; -webkit-text-stroke: 1px rgba(241,238,229,.22); transform: translate(-50%,-50%) rotate(-90deg); font: 700 clamp(80px, 13vw, 190px)/1 var(--font-display); letter-spacing: -.12em; white-space: nowrap; pointer-events: none; }
+.orbit { position: absolute; z-index: 2; display: flex; flex-direction: column; justify-content: space-between; padding: 18px; width: 190px; height: 240px; background: var(--color-acid); color: #111; transition: transform var(--transition-normal); box-shadow: 14px 16px 0 rgba(0,0,0,.28); }
 .orbit strong { font: 600 42px/.8 var(--font-display); letter-spacing: -.08em; }
 .orbit small { font: 11px var(--font-mono); }
 .orbit-one { top: 25%; left: 19%; }
 .orbit-two { right: 14%; bottom: 17%; width: 165px; height: 190px; background: var(--color-lilac); }
 .swatches { display: flex; gap: 4px; }
-.swatches i { display: block; width: 35px; height: 35px; background: #101010; }.swatches i:nth-child(2) { background: var(--color-terracotta); }.swatches i:nth-child(3) { background: var(--color-acid); }
+.swatches i { display: block; width: 35px; height: 35px; background: #101010; }
+.swatches i:nth-child(2) { background: var(--color-terracotta); }
+.swatches i:nth-child(3) { background: var(--color-acid); }
 .playground-hint { position: absolute; right: 18px; top: 48%; color: var(--color-muted); font: 10px var(--font-mono); text-align: right; }
-.manifesto { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 4vw; }
+
+/* Rest of styles */
+.manifesto { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 8vw; }
 .manifesto-text { font: 500 clamp(32px, 4.5vw, 70px)/.95 var(--font-display); letter-spacing: -.08em; }.manifesto-text span { color: var(--color-acid); }
 .manifesto-note { align-self: end; color: #aaa79e; font-size: 14px; line-height: 1.4; }
 .services, .works { display: grid; grid-template-columns: 1fr 2fr; gap: 8vw; }.section-heading h2 { margin: 20px 0; font: 500 clamp(42px, 5vw, 80px)/.9 var(--font-display); letter-spacing: -.09em; }
