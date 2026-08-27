@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useState } from 'react'
-import { motion, useAnimation, easeOut } from 'framer-motion'
+import { motion, easeOut } from 'framer-motion'
 
 const services = [
   { number: '01', title: 'Brand OS', text: 'Собираю визуальную систему бренда: правила, токены, компоненты и шаблоны, которые команда действительно использует.' },
@@ -27,8 +27,6 @@ const orbitVariants = {
 export default function Home() {
   const [activeCard, setActiveCard] = useState(0)
   const [position, setPosition] = useState({ x: 0, y: 0 })
-  const controlsOrbit1 = useAnimation()
-  const controlsOrbit2 = useAnimation()
 
   const movePlayground = (event: React.MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect()
@@ -65,17 +63,24 @@ export default function Home() {
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
         >
-          <motion.div className="hero-copy" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2, duration: 0.6 }}>
+          <motion.div
+            className="hero-copy"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
             <p className="eyebrow">Independent designer / Moscow · 2026</p>
             <h1>Дизайн,<br /><em>который</em><br />работает.</h1>
             <p className="hero-intro">Я Миша Калинский. Создаю визуальные системы и цифровые продукты для брендов, которым важно быть собой.</p>
             <a className="text-link" href="#services">Посмотреть, что я делаю <span>↓</span></a>
           </motion.div>
 
-          <div className="hero-playground" onMouseMove={movePlayground} aria-label="Интерактивное поле Brand OS с абстрактной графикой">
-            <img className="playground-image" src="/playground-brand-os.png" alt="Абстрактная графика Brand OS в терракотовых и кислотных цветах" />
-            <div className="playground-label">Playground <span>move to explore</span></div>
-            <div className="outline-name">KALINSKY</div>
+          <div className="hero-background" aria-hidden="true" />
+          <div className="hero-playground" onMouseMove={movePlayground} aria-label="Интерактивное поле Brand OS">
+            <div className="hero-gradient" />
+            <div className="shards" />
+            <span className="playground-label">Playground <span>move to explore</span></span>
+            <h2 className="outline-name">KALINSKY</h2>
 
             <motion.div
               className="orbit orbit-one"
@@ -101,7 +106,7 @@ export default function Home() {
               <small>make it<br />recognisable</small>
             </motion.div>
 
-            <div className="playground-hint">↗ move your cursor<br />through the field</div>
+            <span className="playground-hint">↗ move your cursor<br />through the field</span>
           </div>
         </motion.section>
 
